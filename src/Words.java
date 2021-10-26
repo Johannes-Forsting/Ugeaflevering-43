@@ -25,8 +25,8 @@ public class Words {
 
 
     public static String getWord(){
-        System.out.println("Press 1 for easy and 2 for hard.");
-        int choice = validateInput(1, 2);
+        System.out.println("Press 1 for easy, 2 for medium and 3 for hard.");
+        int choice = validateInput(1, 3);
 
         while (true){
             int randomInt = Main.random.nextInt(words.size());
@@ -34,7 +34,10 @@ public class Words {
             if((choice == 1) && (wordToUse.length() < 6)) {
                 break;
             }
-            else if ((choice == 2) && (wordToUse.length() > 10)){
+            else if(choice == 2 && (wordToUse.length() > 5) && (wordToUse.length() < 11)){
+                break;
+            }
+            else if ((choice == 3) && (wordToUse.length() > 10)){
                 break;
             }
         }

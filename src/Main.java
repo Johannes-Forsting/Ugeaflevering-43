@@ -13,7 +13,6 @@ public class Main {
         Words.createListOfWords();
         String wordToGuess = Words.getWord();
         createCharArrays(wordToGuess);
-        System.out.println(wordToGuess);
         System.out.println(charsInWordGuessed);
         while (Hangman.lives > 0 && Hangman.hasWon == false) {
             char guessedChar = getCharInput();
@@ -26,8 +25,9 @@ public class Main {
             Hangman.drawHangman();
             Hangman.checkForVictory(charsInWordGuessed);
         }
-        String stringToEndGame = Hangman.hasWon ? "Congratulations. You have won!" : "You died. Better luck next time.";
+        String stringToEndGame = Hangman.hasWon ? "Congratulations. You have won!" : "You died. Better luck next time. \nThe word you were trying to guess was: " + wordToGuess;
         System.out.println(stringToEndGame);
+
     }
 
     static void createCharArrays(String word){
