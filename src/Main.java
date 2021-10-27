@@ -3,12 +3,22 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    //Opretter Random, scanner, og 3 ArrayLiser som jeg skal bruge.
+    //wordToGuessArray er ordet som skal gættes lavet om til et array af chars.
+    //charsInWordGuessed er et array af '_' karaktere som bliver lavet om til ordet jo flere bogstaver man gætter.
+    //charsNotGuessed er et array af chars af hele alfabetet, hvor hvert bogstav fjernes når det gættes på.
     static Random random = new Random();
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Character> wordToGuessArray = new ArrayList<>();
     static ArrayList<Character> charsInWordGuessed = new ArrayList<>();
     static ArrayList<Character> charsNotGuessed = new ArrayList<>();
 
+
+    //Main hvor gør følgende:
+    //Kalder metoden createListOfWords() som scanner alle ord ind fra en fil med omkring 800 forskellige ord.
+    //Kalder metoden getWord som tager et tilfældigt ord fra listen, og længden af ordet kommer an på om man vælger "easy", "medium" eller "hard".
+    //Kalder metoden createCharArrays som opretter de forskellige arrays som jo er forskellige afhængige af ordet som vælges.
+    //Kører while while loop indtil man enten har gættet ordet.
     public static void main(String[] args) {
         Words.createListOfWords();
         String wordToGuess = Words.getWord();
@@ -29,6 +39,7 @@ public class Main {
         System.out.println(stringToEndGame);
     }
 
+    //Metode som fylder de forskellige arrayLister ud
     static void createCharArrays(String word){
         for (int i = 0; i < word.length(); i++) {
             wordToGuessArray.add(word.charAt(i));
@@ -42,6 +53,8 @@ public class Main {
         }
     }
 
+    //Metode som får et bogstav input fra brugeren.
+    //Er sikret på en sådan måde at den kun kan godtage ét bogstav af gangen og man kan ikke skrive tal eller specialtegn.
     static char getCharInput(){
         String choice = "";
         char charToReturn;
@@ -70,6 +83,8 @@ public class Main {
         return charToReturn;
     }
 
+    //Tjekker om bogstavet man har gættet på er i den arrayList med bogstaver som ikke er gættet endnu.
+    //Jeg bruger altså lineær søgning til at gå arrayet igennem og hvis jeg finder bogstavet fjernes det og jeg returnere true.
     static boolean hasBeenUsed(char charGuess){
         boolean returnBool = false;
         for (int i = 0; i < charsNotGuessed.size(); i++) {
@@ -81,6 +96,7 @@ public class Main {
         return returnBool;
     }
 
+    //Metode som tjekker om bogstavet er i ordet og ændre '_' tegnet til det som bogstavet er.
     static boolean isInWord(char guess){
         boolean isInWord = false;
         for (int i = 0; i < wordToGuessArray.size(); i++) {

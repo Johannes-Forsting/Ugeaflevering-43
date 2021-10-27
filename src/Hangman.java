@@ -4,7 +4,7 @@ public class Hangman {
     static int lives = 6;
     static boolean hasWon = false;
 
-
+    //Metode som tjekker om der stadig mangler at blive gættet nogle bogstaver i ordet
     public static void checkForVictory(ArrayList<Character> charsInWordGuessed){
         hasWon = true;
         for (int i = 0; i < charsInWordGuessed.size(); i++) {
@@ -16,6 +16,7 @@ public class Hangman {
         }
     }
 
+    //Metode med switch som tegner hangman alt afhængig af antal af liv tilbage.
     public static void drawHangman() {
         switch (lives) {
             case 6:
