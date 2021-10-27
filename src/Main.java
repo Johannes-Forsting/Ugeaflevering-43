@@ -13,7 +13,6 @@ public class Main {
     static ArrayList<Character> charsInWordGuessed = new ArrayList<>();
     static ArrayList<Character> charsNotGuessed = new ArrayList<>();
 
-
     //Main hvor gør følgende:
     //Kalder metoden createListOfWords() som scanner alle ord ind fra en fil med omkring 800 forskellige ord.
     //Kalder metoden getWord som tager et tilfældigt ord fra listen, og længden af ordet kommer an på om man vælger "easy", "medium" eller "hard".
@@ -26,7 +25,7 @@ public class Main {
         System.out.println(charsInWordGuessed);
         while (Hangman.lives > 0 && Hangman.hasWon == false) {
             char guessedChar = getCharInput();
-            boolean isInWord = isInWord(guessedChar);
+            boolean isInWord = Words.isInWord(guessedChar);
             if (isInWord == false){
                 Hangman.lives--;
             }
@@ -68,7 +67,7 @@ public class Main {
             isOnly1Letter = (choice.length() == 1) && (Character.isLetter(choice.charAt(0)));
             if(isOnly1Letter){
                 charToReturn = choice.charAt(0);
-                boolean hasBeenUsed = hasBeenUsed(charToReturn);
+                boolean hasBeenUsed = Words.hasBeenUsed(charToReturn);
                 if (hasBeenUsed){
                     break;
                 }
@@ -81,30 +80,5 @@ public class Main {
             }
         }
         return charToReturn;
-    }
-
-    //Tjekker om bogstavet man har gættet på er i den arrayList med bogstaver som ikke er gættet endnu.
-    //Jeg bruger altså lineær søgning til at gå arrayet igennem og hvis jeg finder bogstavet fjernes det og jeg returnere true.
-    static boolean hasBeenUsed(char charGuess){
-        boolean returnBool = false;
-        for (int i = 0; i < charsNotGuessed.size(); i++) {
-            if (charsNotGuessed.get(i) == charGuess){
-                charsNotGuessed.remove(i);
-                returnBool = true;
-            }
-        }
-        return returnBool;
-    }
-
-    //Metode som tjekker om bogstavet er i ordet og ændre '_' tegnet til det som bogstavet er.
-    static boolean isInWord(char guess){
-        boolean isInWord = false;
-        for (int i = 0; i < wordToGuessArray.size(); i++) {
-            if(guess == wordToGuessArray.get(i)){
-                charsInWordGuessed.set(i, guess);
-                isInWord = true;
-            }
-        }
-        return isInWord;
     }
 }

@@ -65,4 +65,29 @@ public class Words {
         Main.scanner.nextLine();
         return choice;
     }
+
+    //Metode som tjekker om bogstavet er i ordet og ændre '_' tegnet til det som bogstavet er.
+    public static boolean isInWord(char guess){
+        boolean isInWord = false;
+        for (int i = 0; i < Main.wordToGuessArray.size(); i++) {
+            if(guess == Main.wordToGuessArray.get(i)){
+                Main.charsInWordGuessed.set(i, guess);
+                isInWord = true;
+            }
+        }
+        return isInWord;
+    }
+
+    //Tjekker om bogstavet man har gættet på er i den arrayList med bogstaver som ikke er gættet endnu.
+    //Jeg bruger altså lineær søgning til at gå arrayet igennem og hvis jeg finder bogstavet fjernes det og jeg returnere true.
+    static boolean hasBeenUsed(char charGuess){
+        boolean returnBool = false;
+        for (int i = 0; i < Main.charsNotGuessed.size(); i++) {
+            if (Main.charsNotGuessed.get(i) == charGuess){
+                Main.charsNotGuessed.remove(i);
+                returnBool = true;
+            }
+        }
+        return returnBool;
+    }
 }
