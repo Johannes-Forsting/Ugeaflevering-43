@@ -27,7 +27,6 @@ public class Main {
         }
         String stringToEndGame = Hangman.hasWon ? "Congratulations. You have won!" : "You died. Better luck next time. \nThe word you were trying to guess was: " + wordToGuess;
         System.out.println(stringToEndGame);
-
     }
 
     static void createCharArrays(String word){
